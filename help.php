@@ -114,17 +114,87 @@ if ($_SESSION['status-login'] != true) {
         </div>
     </section>
  
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
+<!-- Content Header (Page header) -->
+<div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row mb-6">
           <div class="col-sm-6">
-            <h1 class="m-0">Help & Support</h1>
+            <h1 class="m-0">Assets</h1>
           </div>
-         
+          <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Tabel User Management</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tbody>
+                    <tr>
+                    <th>Nomor</th>
+                      <th>Username</th>
+                      <th>Nama Admin</th>
+                      <th>Jabatan</th>
+                      <th>Password</th>
+                    </tr>
+                    
+                    <?php
+                        
+                            //buat sql untuk tampilan data, gunakan kata kunci select
+                            $sql = "SELECT * FROM tb_admin";
+                            $query = mysqli_query($db, $sql) or die("SQL Anda Salah");
+                            $nomor = 0;
+                            //Melakukan perulangan u/menampilkan data
+                            while ($data = mysqli_fetch_array($query)) {
+                                $nomor++; //Penambahan satu untuk nilai var nomor
+                                ?>
+                                <tr>
+                                    <td><?= $nomor ?></td>									        
+                                    <td><?= $data['username'] ?> </td>
+                                    <td><?= $data['nama_admin'] ?> </td>                          
+                                    <td><?= $data['jabatan'] ?> </td>
+                                    <td><?= $data['password'] ?> </td>
+                                    <td>
+                                    <!-- <a href="?page=admin&actions=pesertadetail&id=<?= $data['bib'] ?>  " class="btn btn-info btn-xs">
+                                            <span class="fa fa-eye"> Detail  </span>
+                                        </a> -->
+                                        <a href="<?= $data['username'] ?>" class="btn btn-primary btn-xs">
+                                            <span class="fa fa-pencil"> Edit User</span>
+                                        </a>
+                                        <a href="<?= $data['username'] ?>" class="btn btn-danger btn-xs">
+                                            <span class="fa fa-edit"> Hapus User</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <!--Tutup Perulangan data-->
+                            <?php } ?>
+                    </thead>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
         </div>
       </div>
     </div>
+  </div>
 
   </div>
   <footer class="main-footer">
