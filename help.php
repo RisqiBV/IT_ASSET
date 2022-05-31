@@ -103,6 +103,7 @@ if ($_SESSION['status-login'] != true) {
                         <div class="input-group">
                             <input type="search" class="form-control form-control-lg" placeholder="Search">
                             <div class="input-group-append">
+                              
                                 <button type="submit" class="btn btn-lg btn-default">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -118,14 +119,14 @@ if ($_SESSION['status-login'] != true) {
 <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-6">
-          <div class="col-sm-6">
-            <h1 class="m-0">Assets</h1>
-          </div>
+          <!-- <div class="col-sm-6">
+            <h1 class="m-0">User Management</h1>
+          </div> -->
           <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Tabel User Management</h3>
+                <h3 class="card-title">Daftar User Website</h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
