@@ -5,8 +5,7 @@ if ($_SESSION['status-login'] != true) {
     echo '<script>window.location="login.php"</script>';
   }
 ?>
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +35,7 @@ if ($_SESSION['status-login'] != true) {
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
+  Preloader
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="logo.png" alt="AdminLTELogo" height="50" width="100">
   </div>
@@ -93,6 +92,7 @@ if ($_SESSION['status-login'] != true) {
       </nav>
     </div>
     </aside>
+
   <div class="content-wrapper">
     <!-- Main content -->
     <section class="content">
@@ -117,11 +117,79 @@ if ($_SESSION['status-login'] != true) {
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row mb-6">
           <div class="col-sm-6">
-            <h1 class="m-0">Asset</h1>
+            <h1 class="m-0">Assets</h1>
           </div>
-         
+          <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Tabel Asset</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tbody>
+                    <tr>
+                      <th>Nomor</th>
+                      <th>Serial Number</th>
+                      <th>Hostname</th>
+                      <th>Nama User</th>
+                      <th>Model</th>
+                      <th>Type</th>
+                      <th>OS</th>
+                      <th>Processor</th>
+                      <th>RAM</th>
+                      <th>Storage</th>
+                    </tr>
+                    
+                    <?php
+                        
+                            //buat sql untuk tampilan data, gunakan kata kunci select
+                            $sql = "SELECT * FROM tb_asset";
+                            $query = mysqli_query($db, $sql) or die("SQL Anda Salah");
+                            $nomor = 0;
+                            //Melakukan perulangan u/menampilkan data
+                            while ($data = mysqli_fetch_array($query)) {
+                                $nomor++; //Penambahan satu untuk nilai var nomor
+                                ?>
+                                <tr>
+                                    <td><?= $nomor ?></td>
+									                  <td><a href="dashboard.php?serial_number="><?=$data['serial_number'] ?></a></td>
+                                    <td><?= $data['hostname'] ?> </td>
+                                    <td><?= $data['Whoami'] ?> </td>                          
+                                    <td><?= $data['system_model'] ?> </td>
+                                    <td><?= $data['system_type'] ?> </td>
+                                    <td><?= $data['OS_name'] ?> </td>
+                                    <td><?= $data['processor'] ?> </td>
+                                    <td><?= $data['memory'] ?> </td>
+                                    <td><?= $data['disk_size1'] ?> </td>
+                                </tr>
+                                <!--Tutup Perulangan data-->
+                            <?php } ?>
+                    </thead>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
         </div>
       </div>
     </div>
