@@ -155,6 +155,7 @@ if ($_SESSION['status-login'] != true) {
                       <th>Processor</th>
                       <th>RAM</th>
                       <th>Storage</th>
+                      <th>Action</th>
                     </tr>
                     
                     <?php
@@ -178,6 +179,17 @@ if ($_SESSION['status-login'] != true) {
                                     <td><?= $data['processor'] ?> </td>
                                     <td><?= $data['memory'] ?> </td>
                                     <td><?= $data['disk_size1'] ?> </td>
+                                    <td>
+                                    <!-- <a href="?page=admin&actions=pesertadetail&id=<?= $data['bib'] ?>  " class="btn btn-info btn-xs">
+                                            <span class="fa fa-eye"> Detail  </span>
+                                        </a> -->
+                                        <a href="<?= $data['serial_number'] ?>" class="btn btn-primary btn-xs">
+                                            <span class="fa fa-pencil"> Edit Asset</span>
+                                        </a>
+                                        <a href="<?= $data['serial_number'] ?>" class="btn btn-danger btn-xs">
+                                            <span class="fa fa-edit"> Hapus Asset</span>
+                                        </a>
+                                    </td>
                                 </tr>
                                 <!--Tutup Perulangan data-->
                             <?php } ?>
