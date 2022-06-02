@@ -126,7 +126,6 @@ if ($_SESSION['status-login'] != true) {
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Tabel Asset</h3>
-
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -156,10 +155,8 @@ if ($_SESSION['status-login'] != true) {
                       <th>RAM</th>
                       <th>Storage</th>
                       <th>Action</th>
-                    </tr>
-                    
-                    <?php
-                        
+                    </tr>                    
+                    <?php    
                             //buat sql untuk tampilan data, gunakan kata kunci select
                             $sql = "SELECT * FROM tb_asset";
                             $query = mysqli_query($db, $sql) or die("SQL Anda Salah");
@@ -170,7 +167,7 @@ if ($_SESSION['status-login'] != true) {
                                 ?>
                                 <tr>
                                     <td><?= $nomor ?></td>
-									                  <td><a href="dashboard.php?serial_number="><?=$data['serial_number'] ?></a></td>
+									                  <td><a href="detail.php?serial_number=<?=$data['serial_number'] ?>"><?= $data['serial_number'] ?></a></td>
                                     <td><?= $data['hostname'] ?> </td>
                                     <td><?= $data['Whoami'] ?> </td>                          
                                     <td><?= $data['system_model'] ?> </td>
@@ -180,9 +177,6 @@ if ($_SESSION['status-login'] != true) {
                                     <td><?= $data['memory'] ?> </td>
                                     <td><?= $data['disk_size1'] ?> </td>
                                     <td>
-                                    <!-- <a href="?page=admin&actions=pesertadetail&id=<?= $data['bib'] ?>  " class="btn btn-info btn-xs">
-                                            <span class="fa fa-eye"> Detail  </span>
-                                        </a> -->
                                         <a href="<?= $data['serial_number'] ?>" class="btn btn-primary btn-xs">
                                             <span class="fa fa-pencil"> Edit Asset</span>
                                         </a>
