@@ -9,7 +9,7 @@ if ($_SESSION['status-login'] != true) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard | IT Asset Management</title>
+  <title>Asset | IT Asset Management</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -155,7 +155,6 @@ if ($_SESSION['status-login'] != true) {
                       <th>Processor</th>
                       <th>RAM</th>
                       <th>Storage</th>
-                      <th>Action</th>
                     </tr>
                     
                     <?php
@@ -170,26 +169,15 @@ if ($_SESSION['status-login'] != true) {
                                 ?>
                                 <tr>
                                     <td><?= $nomor ?></td>
-									                  <td><a href="dashboard.php?serial_number="><?=$data['serial_number'] ?></a></td>
+									                  <td><a href="detail.php?serial_number="><?=$data['serial_number'] ?></a></td>
                                     <td><?= $data['hostname'] ?> </td>
                                     <td><?= $data['Whoami'] ?> </td>                          
                                     <td><?= $data['system_model'] ?> </td>
-                                    <td><?= $data['system_type'] ?> </td>
+                                    <td><?= $data['type'] ?> </td>
                                     <td><?= $data['OS_name'] ?> </td>
                                     <td><?= $data['processor'] ?> </td>
                                     <td><?= $data['memory'] ?> </td>
                                     <td><?= $data['disk_size1'] ?> </td>
-                                    <td>
-                                    <!-- <a href="?page=admin&actions=pesertadetail&id=<?= $data['bib'] ?>  " class="btn btn-info btn-xs">
-                                            <span class="fa fa-eye"> Detail  </span>
-                                        </a> -->
-                                        <a href="<?= $data['serial_number'] ?>" class="btn btn-primary btn-xs">
-                                            <span class="fa fa-pencil"> Edit Asset</span>
-                                        </a>
-                                        <a href="<?= $data['serial_number'] ?>" class="btn btn-danger btn-xs">
-                                            <span class="fa fa-edit"> Hapus Asset</span>
-                                        </a>
-                                    </td>
                                 </tr>
                                 <!--Tutup Perulangan data-->
                             <?php } ?>
