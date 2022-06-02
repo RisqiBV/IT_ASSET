@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 session_start();
 include('koneksi.php');
@@ -477,7 +476,6 @@ if ($_SESSION['status-login'] != true) {
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
 </body>
-=======
 <?php
 session_start();
 include('koneksi.php');
@@ -714,5 +712,4 @@ if ($_SESSION['status-login'] != true) {
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
 </body>
->>>>>>> cc89a806d668ab8f0098089024f744e106d7dccc
 </html>

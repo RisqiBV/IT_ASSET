@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 session_start();
 include('koneksi.php');
@@ -261,7 +260,6 @@ if ($_SESSION['status-login'] != true) {
 <script src="dist/js/adminlte.js"></script>
 </body>
 </html>
-=======
 <?php
 $id_serial = $_GET['serial_number'];
 session_start();
@@ -517,4 +515,3 @@ if ($_SESSION['status-login'] != true) {
 <script src="dist/js/adminlte.js"></script>
 </body>
 </html>
->>>>>>> cc89a806d668ab8f0098089024f744e106d7dccc
