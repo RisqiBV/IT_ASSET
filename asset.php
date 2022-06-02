@@ -169,7 +169,7 @@ if ($_SESSION['status-login'] != true) {
                                 ?>
                                 <tr>
                                     <td><?= $nomor ?></td>
-									                  <td><a href="detail.php?serial_number="><?=$data['serial_number'] ?></a></td>
+									                  <td><a href="detail.php?serial_number=<?=$data['serial_number'] ?>"><?= $data['serial_number'] ?></a></td>
                                     <td><?= $data['hostname'] ?> </td>
                                     <td><?= $data['Whoami'] ?> </td>                          
                                     <td><?= $data['system_model'] ?> </td>

@@ -1,4 +1,5 @@
 <?php
+$id_serial = $_GET['serial_number'];
 session_start();
 include('koneksi.php');
 if ($_SESSION['status-login'] != true) {
@@ -109,9 +110,8 @@ if ($_SESSION['status-login'] != true) {
               <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap">
                 <?php
-                        
                             //buat sql untuk tampilan data, gunakan kata kunci select
-                            $sql = "SELECT * FROM tb_asset";
+                            $sql = "SELECT * FROM tb_asset where serial_number='$id_serial'";
                             $query = mysqli_query($db, $sql) or die("SQL Anda Salah");
                             $nomor = 0;
                             //Melakukan perulangan u/menampilkan data
@@ -197,10 +197,6 @@ if ($_SESSION['status-login'] != true) {
                       <td>: <?= $data['email']?></td>
                     </tr>
                   <tbody>
-                    <tr>
-                      <td>Type Account</td>
-                      <td>: <?= $data['type_account']?></td>
-                    </tr>
                                 <!--Tutup Perulangan data-->
                             <?php } ?>
                     </thead>
