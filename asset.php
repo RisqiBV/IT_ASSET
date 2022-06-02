@@ -177,12 +177,12 @@ if ($_SESSION['status-login'] != true) {
                                     <td><?= $data['memory'] ?> </td>
                                     <td><?= $data['disk_size1'] ?> </td>
                                     <td>
-                                        <a href="<?= $data['serial_number'] ?>" class="btn btn-primary btn-xs">
-                                            <span class="fa fa-pencil"> Edit Asset</span>
+                                      <a>
+                                        <a href="dashboard.php">Edit Asset |  </a>
                                         </a>
-                                        <a href="<?= $data['serial_number'] ?>" class="btn btn-danger btn-xs">
-                                            <span class="fa fa-edit"> Hapus Asset</span>
-                                        </a>
+                                          <a href="delete.php?serial_number=<?=$data['serial_number'] ?>">Hapus Asset</a></td>
+                                            
+                                      </a>
                                     </td>
                                 </tr>
                                 <!--Tutup Perulangan data-->
