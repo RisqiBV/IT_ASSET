@@ -70,12 +70,6 @@ if ($_SESSION['status-login'] != true) {
                 </a>
               </li>
               <li class="nav-item">
-                <a href="reports.php" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Reports</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="help.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User management</p>

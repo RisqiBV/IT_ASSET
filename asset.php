@@ -381,6 +381,7 @@ if ($_SESSION['status-login'] != true) {
                   </div>
                 </div>
               </div>
+
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap">
@@ -400,8 +401,7 @@ if ($_SESSION['status-login'] != true) {
                     </tr>
                     
                     <?php
-                        
-                            //buat sql untuk tampilan data, gunakan kata kunci select
+                           //buat sql untuk tampilan data, gunakan kata kunci select
                             $sql = "SELECT * FROM tb_asset";
                             $query = mysqli_query($db, $sql) or die("SQL Anda Salah");
                             $nomor = 0;
@@ -544,12 +544,6 @@ if ($_SESSION['status-login'] != true) {
                 <a href="asset.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Asset</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="reports.php" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Reports</p>
                 </a>
               </li>
               <li class="nav-item">
