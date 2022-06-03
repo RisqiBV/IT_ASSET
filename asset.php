@@ -193,6 +193,9 @@ if ($_SESSION['status-login'] != true) {
               </div>
               <!-- /.card-body -->
             </div>
+            <a href="addasset.php" class=4sd"btn btn-success">
+                <i class="fas fa fa-plus-circle"></i> Add Asset
+             </a>
             <!-- /.card -->
           </div>
         </div>
