@@ -126,44 +126,97 @@ if ($_SESSION['status-login'] != true) {
                             ?>
             
 
-            <form action="proses_edit.php" method="POST">
+            <form action="" method="POST">
                 <div class="form-group">
-                <input class="form-control form-control-sm" type="text" name="hostname" value=<?=$hostname = isset($data['hostname']) ? $data['hostname'] : 'Anda belum input data';?>>
+                <input class="form-control form-control-sm" type="text" name="hostname" value="<?=$data['hostname']?>"  placeholder="Hostname">
                 <br>
-                <input class="form-control form-control-sm" type="text" name="Whoami" value=<?=$data['Whoami']?> placeholder="Who Am I">
+                <input class="form-control " type="text" name="Whoami" value="<?=$data['Whoami']?>" placeholder="Who Am I">
                 <br>
                 <input class="form-control form-control-sm" type="text" name="serial_number" value=<?=$serial_number = isset($data['serial_number']) ? $data['serial_number'] : 'Anda belum input data';?>>
                 <br>
-                <input class="form-control form-control-sm" type="text" name="OS_name" value=<?=$data['OS_name']?>>
+                <input class="form-control form-control-sm" type="text" name="OS_name" value="<?=$data['OS_name']?>">
                 <br>
-                <input class="form-control form-control-sm" type="text" name="OS_version" value=<?=$data['OS_version']?>>
+                <input class="form-control form-control-sm" type="text" name="OS_version" value="<?=$data['OS_version']?>">
                 <br>
-                <input class="form-control form-control-sm" type="text" name="system_manufacturer" value=<?=$data['system_manufacturer']?>>
+                <input class="form-control form-control-sm" type="text" name="system_manufacturer" value="<?=$data['system_manufacturer']?>">
                 <br>
-                <input class="form-control form-control-sm" type="text" name="system_model" value=<?=$data['system_model']?>>
+                <input class="form-control form-control-sm" type="text" name="system_model" value="<?=$data['system_model']?>">
                 <br>
-                <input class="form-control form-control-sm" type="text" name="system_type" value=<?=$data['system_type']?>>
+                <input class="form-control form-control-sm" type="text" name="system_type" value="<?=$data['system_type']?>">
                 <br>
-                <input class="form-control form-control-sm" type="text" name="processor" value=<?=$data['processor']?>>
+                <input class="form-control form-control-sm" type="text" name="processor" value="<?=$data['processor']?>">
                 <br>
                 <input class="form-control form-control-sm" type="text" name="memory" value=<?=$data['memory']?>>
                 <br>
-                <input class="form-control form-control-sm" type="text" name="business_unit" value=<?=$data['business_unit']?>>
+                <input class="form-control form-control-sm" type="text" name="business_unit" value="<?=$data['business_unit']?>">
                 <br>
                 <input class="form-control form-control-sm" type="text" name="disk_size1" value=<?=$data['disk_size1']?>>
                 <br>
                 <input class="form-control form-control-sm" type="text" name="disk_size2" value=<?=$data['disk_size2']?>>
                 <br>
-                <input class="form-control form-control-sm" type="text" name="department" value=<?=$data['department']?>>
+                <input class="form-control form-control-sm" type="text" name="department" value="<?=$data['department']?>">
                 <br>
-                <input class="form-control form-control-sm" type="text" name="lokasi" value=<?=$data['lokasi']?>>
+                <input class="form-control form-control-sm" type="text" name="lokasi" value="<?=$data['lokasi']?>">
                 <br>
                 <input class="form-control form-control-sm" type="text" name="email" value=<?=$data['email']?>>
                 <br>
-                <input class="form-control form-control-sm" type="text" name="type_account" value=<?=$data['type_account']?>>
+                <input class="form-control form-control-sm" type="text" name="type_account" value="<?=$data['type_account']?>">
                 <br>
-                <button type="submit_edit" name="submit_edit" class="btn btn-success"> <i class="fas fa fa-update"></i> Update</button>
-            </form>               
+                <button type="submit" name="submit_edit" class="btn btn-success"> <i class="fas fa fa-update"></i> Update</button>
+            </form>    
+            
+
+    <?php 
+    include 'koneksi.php';
+    if(isset($_POST['submit_edit'])){
+
+      $hostname                 = $_POST['hostname'];
+      $Whoami                   = $_POST['Whoami'];
+      $serial_number            = $_POST['serial_number'];
+      $OS_name                  = $_POST['OS_name'];
+      $OS_version               = $_POST['OS_version'];
+      $system_manufacturer      = $_POST['system_manufacturer'];
+      $system_model             = $_POST['system_model'];
+      $system_type              = $_POST['system_type'];
+      $processor                = $_POST['processor'];
+      $memory                   = $_POST['memory'];
+      $business_unit            = $_POST['business_unit'];
+      $disk_size1               = $_POST['disk_size1'];
+      $disk_size2               = $_POST['disk_size2'];
+      $department               = $_POST['department'];
+      $lokasi                   = $_POST['lokasi'];
+      $email                    = $_POST['email'];
+      $type_account             = $_POST['type_account'];
+
+      //$sql = "UPDATE tb_asset SET hostname='$hostname', Whoami='$Whoami', serial_number='$serial_number', OS_name='$OS_name', OS_version='$OS_version', system_manufacturer='$system_manufacturer', system_model='$system_model', system_model='$system_type', processor='$processor', memory='$memory', business_unit='$business_unit', disk_size1='$disk_size1', disk_size2='$disk_size2', department='$department', lokasi='$lokasi', email='$email', type_acoount'$type_account' WHERE serial_number='$_POST[serial_number]'";
+
+      $q= mysqli_query($db,"UPDATE tb_asset SET 
+          hostname='$_POST[hostname]',
+          Whoami='$_POST[Whoami]',
+          serial_number='$_POST[serial_number]',
+          OS_name='$_POST[OS_name]',
+          OS_version='$_POST[OS_version]',
+          system_manufacturer='$_POST[system_manufacturer]',
+          system_model='$_POST[system_model]',
+          system_type='$_POST[system_type]',
+          processor='$_POST[processor]',
+          memory='$_POST[memory]',
+          business_unit='$_POST[business_unit]',
+          disk_size1='$_POST[disk_size1]',
+          disk_size2='$_POST[disk_size2]',
+          department='$_POST[department]',
+          lokasi='$_POST[lokasi]',
+          email='$_POST[type_account]' WHERE serial_number='$id_serial'") or die ("Kesalahan di SQL");
+
+      if($q){
+        echo '<script>alert("Data Berhasil Diupdate");document.location.href="asset.php";</script>';
+      }else{
+          echo '<script>alert("Data Gagal Diupdate");document.location.href="asset.php";</script>';
+      }     
+    }
+
+    ?>
+            
         </div>
         <?php } ?> 
         
