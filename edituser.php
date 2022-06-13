@@ -138,7 +138,7 @@ if ($_SESSION['status-login'] != true) {
                   <input class="form-control " type="text" name="jabatan" value="<?=$data['jabatan']?>" placeholder="Jabatan">
                   <br>
                   
-                  <input class="form-control form-control-sm" type="text" name="password" value="<?=$data['password_user']?>">
+                  <input class="form-control form-control-sm" type="text" name="password_user" value="<?=$data['password_user']?>">
                   <br>
                 
                 <button type="submit" name="submit_edit" class="btn btn-success"> <i class="fas fa fa-update"></i> Update</button>
