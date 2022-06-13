@@ -6,10 +6,20 @@ if ($_SESSION['status-login'] != true) {
   }
 ?>
 
+<?php
+$id_serial = $_GET['serial_number'];
+include('koneksi.php');
+if ($_SESSION['status-login'] != true) {
+    echo '<script>window.location="login.php"</script>';
+  }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard | IT Asset Management</title>
+  <title>Edit Asset | IT Asset Management </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -35,7 +45,7 @@ if ($_SESSION['status-login'] != true) {
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  Preloader
+  <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="logo.png" alt="AdminLTELogo" height="50" width="100">
   </div>
@@ -57,27 +67,9 @@ if ($_SESSION['status-login'] != true) {
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="dashboard.php" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="asset.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Asset</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="help.php" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>User Management</p>
-                </a>
-                </li>
-              <li class="nav-item">
-                <a href="logout.php" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Logout</p>
+                  <p>Kembali</p>
                 </a>
               </li>
             </ul>
@@ -107,101 +99,87 @@ if ($_SESSION['status-login'] != true) {
             </div>
         </div>
     </section>
+    <p>
  
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-6">
-          <div class="col-sm-6">
-            <h1 class="m-0">Assets</h1>
-          </div>
-          <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Tabel Asset</h3>
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tbody>
-                    <tr>
-                      <th>Nomor</th>
-                      <th>Serial Number</th>
-                      <th>Hostname</th>
-                      <th>Nama User</th>
-                      <th>Model</th>
-                      <th>Type</th>
-                      <th>OS</th>
-                      <!-- <th>Processor</th> -->
-                      <th>RAM</th>
-                      <th>Storage</th>
-                      <th>Action</th>
-                    </tr>                    
-                    <?php    
+<section class="content">
+    <div class="container-fluid">
+    <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-12 connectedSortable">
+        <div class="card card-success">
+            <div class="card-header">
+              <h3 class="card-title"> <i class="fas fa fa-plus-circle"></i> Edit Data Asset</h3>
+            </div>
+            <!-- /.card-header -->
+             <div class="card-body">
+             <?php
                             //buat sql untuk tampilan data, gunakan kata kunci select
-                            $sql = "SELECT * FROM tb_asset";
+                            $sql = "SELECT * FROM tb_asset where serial_number='$id_serial'";
                             $query = mysqli_query($db, $sql) or die("SQL Anda Salah");
-                            $nomor = 0;
+                            
+                            
                             //Melakukan perulangan u/menampilkan data
-                            while ($data = mysqli_fetch_array($query)) {
-                                $nomor++; //Penambahan satu untuk nilai var nomor
-                                ?>
-                                <tr>
-                                    <td><?= $nomor ?></td>
-									                  <td><a href="detail.php?serial_number=<?=$data['serial_number'] ?>"><?= $data['serial_number'] ?></a></td>
-                                    <td><?= $data['hostname'] ?> </td>
-                                    <td><?= $data['Whoami'] ?> </td>                          
-                                    <td><?= $data['system_model'] ?> </td>
-                                    <td><?= $data['system_type'] ?> </td>
-                                    <td><?= $data['OS_name'] ?> </td>
-                                    <!-- <td><?= $data['processor'] ?> </td> -->
-                                    <td><?= $data['memory'] ?> </td>
-                                    <td><?= $data['disk_size1'] ?> </td>
-                                    <td>
-                                      <a>
-                                        <a href="edit.php?serial_number=<?=$data['serial_number'] ?>">Edit Asset |  </a>
-                                        </a>
-                                        <a href="delete.php?serial_number=<?=$data['serial_number'] ?>" onclick="return confirm('Anda Ingin Menghapus Asset?')"/>Hapus</a>
-                                            
-                                      </a>
-                                    </td>
-                                </tr>
-                                <!--Tutup Perulangan data-->
-                            <?php } ?>
-                    </thead>
-                  </tbody>
-                </table>
-              </div>
+                            while ($data = mysqli_fetch_array($query)) {                              
+                            ?>
+            
+
+            <form action="proses_edit.php" method="POST">
+                <div class="form-group">
+                <input class="form-control form-control-sm" type="text" name="hostname" value=<?=$hostname = isset($data['hostname']) ? $data['hostname'] : 'Anda belum input data';?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="Whoami" value=<?=$data['Whoami']?> placeholder="Who Am I">
+                <br>
+                <input class="form-control form-control-sm" type="text" name="serial_number" value=<?=$serial_number = isset($data['serial_number']) ? $data['serial_number'] : 'Anda belum input data';?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="OS_name" value=<?=$data['OS_name']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="OS_version" value=<?=$data['OS_version']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="system_manufacturer" value=<?=$data['system_manufacturer']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="system_model" value=<?=$data['system_model']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="system_type" value=<?=$data['system_type']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="processor" value=<?=$data['processor']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="memory" value=<?=$data['memory']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="business_unit" value=<?=$data['business_unit']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="disk_size1" value=<?=$data['disk_size1']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="disk_size2" value=<?=$data['disk_size2']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="department" value=<?=$data['department']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="lokasi" value=<?=$data['lokasi']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="email" value=<?=$data['email']?>>
+                <br>
+                <input class="form-control form-control-sm" type="text" name="type_account" value=<?=$data['type_account']?>>
+                <br>
+                <button type="submit_edit" name="submit_edit" class="btn btn-success"> <i class="fas fa fa-update"></i> Update</button>
+            </form>               
+        </div>
+        <?php } ?> 
+        
+  </div><!-- /.container-fluid -->
+</section>
               <!-- /.card-body -->
             </div>
-            <a href="addasset.php" class=4sd"btn btn-success">
-                <i class="fas fa fa-plus-circle"></i> Add Asset
-             </a>
-            <!-- /.card -->
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
+</div>
 
   </div>
   <footer class="main-footer">
     <center><strong>Copyright &copy; 2022 <a href="https://adminlte.io">Sreeya Sewu Indonesia</a>.</strong></center>
     </div>
   </footer>
+
+  
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -237,4 +215,4 @@ if ($_SESSION['status-login'] != true) {
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
 </body>
-<?php
+</html>
