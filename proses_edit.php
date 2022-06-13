@@ -1,6 +1,6 @@
 <?php 
     include 'koneksi.php';
-    if(($_POST)){
+    if(isset($_POST)){
 
       $hostname                 = $_POST['hostname'];
       $Whoami                   = $_POST['Whoami'];
@@ -20,12 +20,14 @@
       $email                    = $_POST['email'];
       $type_account             = $_POST['type_account'];
 
-      $sql = "UPDATE tb_asset SET hostname='$hostname', Whoami='$Whoami', serial_number='$serial_number', OS_name='$OS_name', OS_version='$OS_version', system_manufacturer='$system_manufacturer', system_model='$system_model', system_model='$system_type', processor='$processor', memory='$memory', business_unit='$business_unit', disk_size1='$disk_size1', disk_size2='$disk_size2', department='$department', lokasi='$lokasi', email='$email', type_acoount'$type_account' WHERE serial_number='$serial_number'";
+      //$sql = "UPDATE tb_asset SET hostname='$hostname', Whoami='$Whoami', serial_number='$serial_number', OS_name='$OS_name', OS_version='$OS_version', system_manufacturer='$system_manufacturer', system_model='$system_model', system_model='$system_type', processor='$processor', memory='$memory', business_unit='$business_unit', disk_size1='$disk_size1', disk_size2='$disk_size2', department='$department', lokasi='$lokasi', email='$email', type_acoount'$type_account' WHERE serial_number='$_POST[serial_number]'";
 
-      $result = mysqli_query($db,$sql);
-      if($result){
-        echo '<script>alert("Data Berhasil Diupdate");document.location.href="#.php";</script>';
-      }else{
-        echo '<script>alert("Data Gagal Diupdate");document.location.href="asset.php";</script> ';
-      }
+      mysqli_query($db,"UPDATE tb_asset SET hostname='$hostname', Whoami='$Whoami', serial_number='$serial_number', OS_name='$OS_name', OS_version='$OS_version', system_manufacturer='$system_manufacturer', system_model='$system_model', system_model='$system_type', processor='$processor', memory='$memory', business_unit='$business_unit', disk_size1='$disk_size1', disk_size2='$disk_size2', department='$department', lokasi='$lokasi', email='$email', type_acoount'$type_account' WHERE serial_number='$_POST[serial_number]'");
+      // if($result){
+      //   echo '<script>alert("Data Berhasil Diupdate");document.location.href="#.php";</script>';
+      // }else{
+      //   echo '<script>alert("Data Gagal Diupdate");document.location.href="asset.php";</script> ';
+      // }
     }
+
+    ?>
